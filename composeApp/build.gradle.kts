@@ -11,8 +11,8 @@ plugins {
 }
 
 kotlin {
-/*    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
+    @OptIn(ExperimentalWasmDsl::class)
+    js {
         moduleName = "composeApp"
         browser {
             commonWebpackConfig {
@@ -20,8 +20,8 @@ kotlin {
             }
         }
         binaries.executable()
-    }*/
-    
+    }
+
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -29,9 +29,9 @@ kotlin {
             }
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -42,10 +42,10 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
@@ -68,12 +68,15 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation("app.cash.sqldelight:sqlite-driver:2.0.1")
         }
-       /* jsMain.dependencies {
-            implementation("app.cash.sqldelight:web-worker-driver:2.0.1")
-            implementation(devNpm("copy-webpack-plugin", "9.1.0"))
-            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.0.1"))
-            implementation(npm("sql.js", "1.8.0"))
-        }*/
+
+        jsMain {
+            dependencies {
+                implementation("app.cash.sqldelight:web-worker-driver:2.0.1")
+                implementation(devNpm("copy-webpack-plugin", "9.1.0"))
+                implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.0.1"))
+                implementation(npm("sql.js", "1.8.0"))
+            }
+        }
     }
 }
 
