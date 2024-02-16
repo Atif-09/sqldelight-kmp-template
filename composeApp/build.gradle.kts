@@ -131,7 +131,6 @@ sqldelight {
     databases {
         create("AppDatabase") {
             packageName.set("template.sqldelight.db")
-            generateAsync.set(true)
         }
     }
 }
