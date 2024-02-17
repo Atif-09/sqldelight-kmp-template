@@ -1,3 +1,6 @@
-This is a Kotlin Multiplatform template for sql-delight targeting Android, iOS, Desktop.
+This is a Kotlin Multiplatform template for sql-delight targeting Android, iOS, Desktop, Web.
 
-**Note:** Currently, only the above 3 platforms are supported. Compose/Web will be added soon.
+**Note:** In Compose/Web there is an issue when you run jsBrowserDevelopmentRun gradle task it show an error. Like following but upon closing it everything works fine.
+
+
+If you run jsBrowserProductionRun gradle task then everything works fine
