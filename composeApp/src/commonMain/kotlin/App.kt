@@ -27,7 +27,7 @@ fun App() {
             }
             AnimatedVisibility(showContent) {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource("compose-multiplatform.xml"), null)
+                    Image(painterResource("drawable/compose-multiplatform.xml"), null)
                     Text("Compose: $greeting")
                 }
             }
