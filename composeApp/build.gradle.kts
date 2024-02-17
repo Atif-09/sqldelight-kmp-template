@@ -1,6 +1,7 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -12,11 +13,12 @@ plugins {
 
 kotlin {
     @OptIn(ExperimentalWasmDsl::class)
-    js {
+    js(IR) {
         moduleName = "composeApp"
         browser {
             commonWebpackConfig {
                 outputFileName = "composeApp.js"
+                devServer = (devServer?: KotlinWebpackConfig.DevServer()).copy()
             }
         }
         binaries.executable()
@@ -126,14 +128,15 @@ compose.desktop {
     }
 }
 
-/*compose.experimental {
+compose.experimental {
     web.application {}
-}*/
+}
 
 sqldelight {
     databases {
         create("AppDatabase") {
             packageName.set("template.sqldelight.db")
+            generateAsync.set(true)
         }
     }
 }
